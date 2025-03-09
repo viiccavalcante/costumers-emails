@@ -15,10 +15,13 @@ public class Subscriber {
 
     public LocalDateTime createdAt;
 
-    public Subscriber(String email, String ipAddress){
+    public String source;
+
+    public Subscriber(String email, String ipAddress, String source){
         this.email = email;
         this.createdAt = LocalDateTime.now();
         this.ipAddress = ipAddress;
+        this.source = source;
     }
 
     public String getEmail() {
