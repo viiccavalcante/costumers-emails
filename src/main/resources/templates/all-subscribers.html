@@ -13,13 +13,14 @@
       <th>Email</th>
       <th>IP Address</th>
       <th>Created At</th>
+      <th>Source</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="subscriber : ${subscribers}">
       <td th:text="${subscriber.email}"></td>
       <td th:text="${subscriber.ipAddress}"></td>
-      <td th:text="${subscriber.createdAt}"></td>
+      <td th:text="${subscriber.source}"></td>
     </tr>
     </tbody>
   </table>

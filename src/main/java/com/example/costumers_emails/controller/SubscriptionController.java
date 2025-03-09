@@ -20,12 +20,12 @@ public class SubscriptionController {
 
     @GetMapping("/")
     public String showForm(Model model) {
-        model.addAttribute("subscriber", new Subscriber("", ""));
+        model.addAttribute("subscriber", new Subscriber("", "", ""));
         return "home";
     }
 
     @PostMapping("/subscribe")
-    public String submitForm(@Valid @ModelAttribute Subscriber subscriber, BindingResult result, Model model, HttpServletRequest request) {
+    public String subscribe(@Valid @ModelAttribute Subscriber subscriber, BindingResult result, Model model, HttpServletRequest request) {
         if (result.hasErrors()) {
             return "home";
         }
@@ -35,7 +35,7 @@ public class SubscriptionController {
             return "home";
         }
 
-        subscriber = new Subscriber(subscriber.getEmail(), request.getRemoteAddr());
+        subscriber = new Subscriber(subscriber.getEmail(), request.getRemoteAddr(), "landing-page");
         subscriptionRepository.addSubscriber(subscriber);
 
         model.addAttribute("success", "Success!");
