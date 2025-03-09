@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>All Subscribers</title>
+</head>
+<body>
+<div class="container">
+  <h1>All Subscribers</h1>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>IP Address</th>
+      <th>Created At</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="subscriber : ${subscribers}">
+      <td th:text="${subscriber.email}"></td>
+      <td th:text="${subscriber.ipAddress}"></td>
+      <td th:text="${subscriber.createdAt}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

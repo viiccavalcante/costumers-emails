@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Subscribe</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: rgba(31, 30, 30);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+            .container {
+                padding: 30px;
+                width: 100%;
+                max-width: 700px;
+                text-align: center;
+            }
+            h2, h1 {
+                color: rgb(255, 255, 255);
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            p {
+                color: rgb(255, 255, 255);
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+            input[type="email"] {
+                width: 100%;
+                padding: 12px 15px;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: border 0.3s;
+            }
+            input[type="email"]:focus {
+                border: 1px solid #6c5ce7;
+                outline: none;
+            }
+            button {
+                font-weight: bold;
+                padding: 12px 20px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .error {
+                color: red;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+            .success {
+                color: green;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+            .form-container {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>A super innovative product:</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in ipsum nec tortor sagittis condimentum vel ut lectus. Donec vitae elit rhoncus, posuere velit non, dignissim velit. Morbi eu metus vel enim lacinia iaculis.
+                Vivamus nec malesuada felis. Integer a finibus est, sed suscipit arcu. Proin tortor erat, tristique sed auctor ut, pulvinar eu nisl. Morbi nec magna sapien. </p>
+            <h2>If you want to know more about the product, subscribe here:</h2>
+            <form th:action="@{/subscribe}" th:object="${subscriber}" method="post">
+                <input type="email" th:field="*{email}" placeholder="E-mail" required />
+                <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="error" th:if="${error}" th:text="${error}"></p>
+            <p class="success" th:if="${success}" th:text="${success}"></p>
+        </div>
+    </body>
+</html>
