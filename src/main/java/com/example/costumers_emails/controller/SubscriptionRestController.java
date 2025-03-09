@@ -1,6 +1,5 @@
 package com.example.costumers_emails.controller;
 
-
 import com.example.costumers_emails.dto.SubscriptionRequestDTO;
 import com.example.costumers_emails.model.Subscriber;
 import com.example.costumers_emails.repository.SubscriptionRepository;
