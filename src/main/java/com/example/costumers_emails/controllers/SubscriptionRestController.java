@@ -1,16 +1,16 @@
-package com.example.costumers_emails.controller;
+package com.example.costumers_emails.controllers;
 
-import com.example.costumers_emails.dto.SubscriptionRequestDTO;
-import com.example.costumers_emails.model.Subscriber;
-import com.example.costumers_emails.repository.SubscriptionRepository;
+import com.example.costumers_emails.dtos.SubscriptionRequestDTO;
+import com.example.costumers_emails.models.Subscriber;
+import com.example.costumers_emails.repositories.SubscriptionRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -32,15 +32,15 @@ public class SubscriptionRestController {
         }
 
         Subscriber subscriber = new Subscriber(email, httpRequest.getRemoteAddr(), "api");
-        subscriptionRepository.addSubscriber(subscriber);
+        subscriptionRepository.save(subscriber);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(Map.of("message", "Subscription successful", "subscriber", subscriber));
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Set<Subscriber>> getAllSubscribers() {
-        return ResponseEntity.ok(subscriptionRepository.getAllSubscribers());
+    public ResponseEntity<List<Subscriber>> getAllSubscribers() {
+        return ResponseEntity.ok(subscriptionRepository.findAll());
     }
 }
 

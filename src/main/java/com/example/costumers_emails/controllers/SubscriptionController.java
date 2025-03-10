@@ -1,7 +1,7 @@
-package com.example.costumers_emails.controller;
+package com.example.costumers_emails.controllers;
 
-import com.example.costumers_emails.model.Subscriber;
-import com.example.costumers_emails.repository.SubscriptionRepository;
+import com.example.costumers_emails.models.Subscriber;
+import com.example.costumers_emails.repositories.SubscriptionRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ public class SubscriptionController {
         }
 
         subscriber = new Subscriber(subscriber.getEmail(), request.getRemoteAddr(), "landing-page");
-        subscriptionRepository.addSubscriber(subscriber);
+        subscriptionRepository.save(subscriber);
 
         model.addAttribute("success", "Success!");
         return "home";
@@ -44,7 +44,7 @@ public class SubscriptionController {
 
     @GetMapping("/all-subscribers")
     public String getAll(Model model) {
-        model.addAttribute("subscribers", subscriptionRepository.getAllSubscribers());
+        model.addAttribute("subscribers", subscriptionRepository.findAll());
         return "all-subscribers";
     }
 }
