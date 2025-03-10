@@ -1,21 +1,35 @@
-package com.example.costumers_emails.model;
+package com.example.costumers_emails.models;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "subscribers")
 public class Subscriber {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank
     @Email
-    public String email;
+    @Column(unique = true, nullable = false)
+    private String email;
 
-    public String ipAddress;
+    @Column(nullable = false)
+    private String ipAddress;
 
-    public LocalDateTime createdAt;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
 
-    public String source;
+    @Column(nullable = false)
+    private String source;
+
+    private Subscriber() {
+    }
 
     public Subscriber(String email, String ipAddress, String source){
         this.email = email;
@@ -24,13 +38,14 @@ public class Subscriber {
         this.source = source;
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
@@ -40,8 +55,9 @@ public class Subscriber {
         return ipAddress;
     }
 
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
+
+    public String getSource(){
+        return source;
     }
 
 }
