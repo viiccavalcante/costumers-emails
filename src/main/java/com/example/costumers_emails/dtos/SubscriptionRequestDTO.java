@@ -8,6 +8,13 @@ public class SubscriptionRequestDTO {
     @Email(message = "Please enter a valid email address")
     private String email;
 
+    public SubscriptionRequestDTO() {
+    }
+
+    public SubscriptionRequestDTO(String email) {
+        this.email = email;
+    }
+
     public String getEmail() {
         return email;
     }
